@@ -62,7 +62,7 @@ node scripts/serve.mjs --dist
 
 ## 发布到 GitHub Pages
 
-目标仓库：[Ericcccccai/yqczzc](https://github.com/Ericcccccai/yqczzc)。本地目录已经连接 origin，地址为 git@github.com:Ericcccccai/yqczzc.git，分支为 main。当前只准备本地提交，尚未推送或公开发布。
+目标仓库：[Ericcccccai/yqczzc](https://github.com/Ericcccccai/yqczzc)。本地目录已经连接 origin，地址为 git@github.com:Ericcccccai/yqczzc.git，分支为 main。推送到 main 后会自动运行测试、构建并部署。
 
 ### 1. 开启 Pages 发布源
 
