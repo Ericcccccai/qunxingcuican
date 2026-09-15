@@ -3,7 +3,7 @@ import {GAMES,createChallenge,validChallenge,challengeResult} from './minigames.
 export const VERSION=2;
 export function fresh(name='你'){return {version:VERSION,name:name.trim().slice(0,16)||'你',node:start,y:0,z:0,self:0,photo:null,reply:null,log:[],ending:null,games:{},challenge:null};}
 export function format(text,s){return text.replaceAll('{name}',s.name);}
-export function availableRoutes(s){return [{label:'坐 yqc 对面，看看他到底有几句“就一句”',target:yRoute,locked:s.y<3,reason:'多接几次 yqc 的戏才会开放'},{label:'坐 zzc 那边，先抢回被肩甲占的凳子',target:zRoute,locked:s.z<3,reason:'多接几次 zzc 的戏才会开放'},{label:'坐中间。吃完各回各家，不接售后',target:friendRoute,locked:false}];}
+export function availableRoutes(s){return [{label:'坐 北美叶勤聪 对面，看看他到底有几句“就一句”',target:yRoute,locked:s.y<3,reason:'多接几次 北美叶勤聪 的戏才会开放'},{label:'坐 纽约三星堆 那边，先抢回被肩甲占的凳子',target:zRoute,locked:s.z<3,reason:'多接几次 纽约三星堆 的戏才会开放'},{label:'坐中间。吃完各回各家，不接售后',target:friendRoute,locked:false}];}
 export function current(s){return story[s.node];}
 export function record(s,speaker,text){s.log.push({speaker,text:format(text,s)});}
 export function advance(s){const n=current(s);if(s.ending)return false;if(s.reply){s.reply=null;if(n.next){s.node=n.next;return true;}return false;}if(n.ending){s.ending=n.ending;return true;}if(n.choices||n.routeChoice||(n.game&&!s.games[n.game]))return false;if(n.next){s.node=n.next;return true;}return false;}

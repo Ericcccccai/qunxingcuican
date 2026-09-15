@@ -30,11 +30,11 @@ function render(){
  if(state.ending){if(state.reply){record(state,'旁白',state.reply);state.reply=null;}renderEnding();saveAuto();return;}
  show('game');logVisible();const n=current(state),ch=chapters[n.chapter],scene=scenes[n.scene];
  $('chapter-no').textContent=ch[0];$('chapter-name').textContent=ch[1];$('scene-note').textContent=n.location||ch[2];
- const wardrobe=wardrobes[n.wardrobe];document.querySelectorAll('.portrait img').forEach((image,i)=>{const src=`./assets/${wardrobe.image}.webp`;if(image.getAttribute('src')!==src)image.src=src;image.alt=(['yqc','你','zzc'][i])+'，'+wardrobe.label;});$('game').dataset.wardrobe=n.wardrobe;$('game').dataset.scene=n.scene;$('game').style.setProperty('--scene-image',`url('./assets/${scene.image}.webp')`);music.scene(n.scene);
+ const wardrobe=wardrobes[n.wardrobe];document.querySelectorAll('.portrait img').forEach((image,i)=>{const src=`./assets/${wardrobe.image}.webp`;if(image.getAttribute('src')!==src)image.src=src;image.alt=(['北美叶勤聪','你','纽约三星堆'][i])+'，'+wardrobe.label;});$('game').dataset.wardrobe=n.wardrobe;$('game').dataset.scene=n.scene;$('game').style.setProperty('--scene-image',`url('./assets/${scene.image}.webp')`);music.scene(n.scene);
  const speaker=state.reply?'旁白':n.speaker;$('speaker').textContent=speaker==='你'?state.name:speaker;$('speaker').dataset.who=speaker;
- $('speaker-tag').textContent=({yqc:'主角必须是我',zzc:'就借一点地方','你':'今日客服，随时下班',旁白:'事件现场'})[speaker]||'';
+ $('speaker-tag').textContent=({北美叶勤聪:'主角必须是我',纽约三星堆:'就借一点地方','你':'今日客服，随时下班',旁白:'事件现场'})[speaker]||'';
  $('text').textContent=format(state.reply||n.text,state);$('line-number').textContent=String(state.log.length).padStart(3,'0');
- for(const id of ['y','z'])$(id+'-track').textContent=(id==='y'?'yqc':'zzc')+' · '+(state[id]>=5?'已开始加戏':state[id]>=3?'默契互损':'先看热闹');
+ for(const id of ['y','z'])$(id+'-track').textContent=(id==='y'?'北美叶勤聪':'纽约三星堆')+' · '+(state[id]>=5?'已开始加戏':state[id]>=3?'默契互损':'先看热闹');
  $('game').dataset.chapter=n.chapter;$('game').dataset.speaker=speaker;$('game').dataset.route=n.route;$('player-caption').firstChild.textContent=state.name;
  const challenge=!state.reply&&n.game&&!state.games[n.game],options=!state.reply&&(n.choices||n.routeChoice||challenge);
  $('choices').replaceChildren();$('choices').hidden=!options;$('hint').textContent=challenge?'玩一局，或者交给他们处理':options?'请选择你的应对方式':'点击继续 / 空格';
@@ -82,7 +82,7 @@ function renderEnding(){
 }
 $('start').onclick=newGame;
 $('continue').onclick=()=>{music.unlock();const s=unpack(read('auto'));if(s){state=s;render();}else{notify('没有可读取的当前版本进度');title();}};
-$('about').onclick=()=>modal('关于这份备忘录','原创虚构熟人喜剧。yqc、zzc 是虚构角色代号，所有人物均为成年人。性格与荒诞情节是创作推演，不代表真实人物言行。六章、六处场景、三个小游戏、三种结局。恋爱可选，性格不会一键修好。角色与背景采用原创生成插画，配乐为原创合成器纯音乐。点击或空格继续，数字键选择；小游戏支持点击与键盘，可随时跳过。');
+$('about').onclick=()=>modal('关于这份备忘录','原创虚构熟人喜剧。北美叶勤聪、纽约三星堆 是虚构角色代号，所有人物均为成年人。性格与荒诞情节是创作推演，不代表真实人物言行。六章、六处场景、三个小游戏、三种结局。恋爱可选，性格不会一键修好。角色与背景采用原创生成插画，配乐为原创合成器纯音乐。点击或空格继续，数字键选择；小游戏支持点击与键盘，可随时跳过。');
 $('dialogue').onclick=next;$('history').onclick=history;$('save').onclick=()=>slots('save');$('load').onclick=()=>slots('load');
 $('auto').onclick=()=>{const n=current(state);if(!state.reply&&(n.choices||n.routeChoice||(n.game&&!state.games[n.game]))){notify('先处理当前选项或小游戏');return;}auto=!auto;$('auto').textContent=auto?'停止自动':'自动阅读';$('auto').setAttribute('aria-pressed',String(auto));if(auto)render();else clearTimeout(timer);};
 $('restart').onclick=restart;$('replay').onclick=newGame;$('end-home').onclick=title;$('home').onclick=title;
